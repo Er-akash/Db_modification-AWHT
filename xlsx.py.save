@@ -1,0 +1,33 @@
+from openpyxl import load_workbook
+workbook = load_workbook('akash.xlsx')
+worksheet = workbook.get_sheet_by_name('Sheet1')
+sheet_cells = []
+#print(sheet_cells)
+grp1=[(1,6,2,'A','H-78'),(2,7,3,'A2','H-42'),(3,5,3,'B','H-29')]
+grp2=[(1,2,3,4,5,6),(7,8,9,10,11,12,13),(14,15,16,17,18)]
+counter=1
+#c=0
+for rows in worksheet.iter_rows():
+    row_cells = []
+   # print(row_cells)
+    for cell in rows:
+        row_cells.append(str(cell.value))
+	#print(cell.value)
+    sheet_cells.append(tuple(row_cells))
+    #print(row_cells)
+#print (sheet_cells)                                               #tuple of exel sheet
+for i in range (300):
+	for j in sheet_cells:
+		if (j[1]==str(i)):
+			#print(j)                                  #tuple using ckt no
+			for t in grp1:                             #search in grp1
+				if j[2] in t:
+					print(t)
+				#elif j[4] in t:
+				#	print(t)                   #tuple using part name
+					for z in grp2:
+						#print(len(z),type(t[1]),t[1])
+						if (int(t[1])==int(len(z))):
+							print(z)     #no of wiring pins in grp2
+					#c=c+1
+			counter=counter+1
